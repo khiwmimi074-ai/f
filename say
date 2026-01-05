@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* พื้นหลังไล่เฉดสีแบบหวานๆ */
+            background: linear-gradient(135deg, #ff96a4, #ff739d);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Kanit', sans-serif;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+        }
+
+        /* รูปหัวใจ */
+        .heart-container {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .heart {
+            background-color: #ffffff;
+            display: inline-block;
+            height: 80px;
+            position: relative;
+            transform: rotate(-45deg);
+            width: 80px;
+            box-shadow: 0 0 40px rgba(255,255,255,0.3);
+            animation: beat 1s infinite alternate;
+        }
+
+        .heart:before, .heart:after {
+            content: "";
+            background-color: #ffffff;
+            border-radius: 50%;
+            height: 80px;
+            position: absolute;
+            width: 80px;
+        }
+
+        .heart:before { top: -40px; left: 0; }
+        .heart:after { left: 40px; top: 0; }
+
+        @keyframes beat {
+            to { transform: scale(1.1) rotate(-45deg); }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* หน้าต่างข้อความลับ (Popup) */
+        #messageBox {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            color: #ff9090;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 80%;
+            z-index: 10;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #ff7373;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" onclick="showMessage()">
+        <div class="heart-container">
+            <div class="heart"></div>
+        </div>
+        <h1>กดที่หัวใจดูสิ</h1>
+        <p>มีอะไรจะบอกแหละ...</p>
+    </div>
+
+    <div id="overlay" class="overlay" onclick="hideMessage()"></div>
+    <div id="messageBox">
+        <h2>เป็นคนคุยกันดูอีกสักรอบไหม Te diligo</h2>
+        <p>คือจริงๆเค้าคิดคำไม่ออกแล้วขอโทษนะ</p>
+        <button onclick="hideMessage()">ปิดหน้าต่างนี้</button>
+    </div>
+
+    <script>
+        function showMessage() {
+            document.getElementById('messageBox').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        function hideMessage() {
+            document.getElementById('messageBox').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
